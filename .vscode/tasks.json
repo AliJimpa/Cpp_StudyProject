@@ -10,7 +10,7 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${workspaceFolder}/Build/g++/${workspaceFolderBasename}"
+                "${workspaceFolder}/build/g++/${workspaceFolderBasename}"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -23,17 +23,17 @@
         },
         {
             "type": "cppbuild",
-            "label": "Build(G++)",
+            "label": "build(G++)",
             "command": "C:\\Program Files\\MinGW\\bin\\g++.exe",
             "args": [
                 "-g",
-                "${workspaceFolder}\\Source\\Main.cpp",
+                "${workspaceFolder}\\src\\Main.cpp",
                 "-o",
-                "${workspaceFolder}/Build/g++/${workspaceFolderBasename}",
+                "${workspaceFolder}/build/g++/${workspaceFolderBasename}",
                 "-I",
-                "Libraries\\GLFW\\include",
+                "lib\\GLFW\\include",
                 "-L",
-                "Libraries\\GLFW\\lib-vc2022"
+                "lib\\GLFW\\lib-vc2022"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -52,7 +52,7 @@
                 "-c",
                 "${file}",
                 "-o",
-                "${workspaceFolder}/Build/g++/${fileBasenameNoExtension}.o"
+                "${workspaceFolder}/build/g++/${fileBasenameNoExtension}.o"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -65,18 +65,29 @@
         },
         {
             "type": "shell",
-            "label": "Build-Debug(CL)+Librarry",
+            "label": "build-Debug(CL)+Librarry",
             "command": "cl.exe",
             "args": [
                 "/std:c++17",
                 "/W4",
                 "/EHsc",
-                "/I${workspaceFolder}\\Libraries\\GLFW\\include",
-                "/I${workspaceFolder}\\Build\\CL",
-                "/Fo${workspaceFolder}\\Build\\CL\\",
-                "/Fe${workspaceFolder}\\Build\\CL\\${workspaceFolderBasename}.exe",
-                "${workspaceFolder}\\Libraries\\GLFW/lib-vc2022\\glfw3dll.lib",
-                "${workspaceFolder}/Source/*.cpp"
+                "/I${workspaceFolder}\\include",
+                "/I${workspaceFolder}\\include\\Widgets",
+                "/I${workspaceFolder}\\include\\Core",
+                "/I${workspaceFolder}\\source",
+                "/I${workspaceFolder}\\lib\\GLFW\\include",
+                "/I${workspaceFolder}\\lib\\GLEW\\include",
+                "/I${workspaceFolder}\\build\\CL",
+                "/Fo${workspaceFolder}\\build\\CL\\",
+                "/Fe${workspaceFolder}\\build\\CL\\${workspaceFolderBasename}.exe",
+                "${workspaceFolder}\\lib\\GLFW/lib-vc2022\\glfw3dll.lib",
+                "${workspaceFolder}\\lib\\GLEW/lib\\glew32s.lib",
+                "${workspaceFolder}/source/imgui/*.cpp",
+                "${workspaceFolder}/source/imgui/backends/imgui_impl_glfw.cpp",
+                "${workspaceFolder}/source/imgui/backends/imgui_impl_opengl2.cpp",
+                "opengl32.lib",
+                "${workspaceFolder}/src/*.cpp",
+                "${workspaceFolder}/src/Core/*.cpp"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -109,7 +120,7 @@
             "command": "cmd",
             "args": [
                 "/C",
-                "if not exist ${workspaceFolder}\\Build mkdir Build\\CL && mkdir Build\\g++ && mkdir Build\\Debug && mkdir Libraries"
+                "if not exist ${workspaceFolder}\\build mkdir build\\CL && mkdir build\\g++ && mkdir build\\Debug && mkdir lib && mkdir tests && mkdir src && mkdir include && mkdir docs && mkdir assets"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -123,7 +134,7 @@
             "command": "cmd",
             "args": [
                 "/C",
-                "start ${workspaceFolder}\\Build\\CL\\${workspaceFolderBasename}.exe"
+                "start ${workspaceFolder}\\build\\CL\\${workspaceFolderBasename}.exe"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -138,10 +149,10 @@
             "args": [
                 "/E",
                 "/P",
-                "${workspaceFolder}/Source/*.cpp"
+                "${workspaceFolder}/src/*.cpp"
             ],
             "options": {
-                "cwd": "${workspaceFolder}\\Build\\CL"
+                "cwd": "${workspaceFolder}\\build\\CL"
             },
             "problemMatcher": [
                 "$msCompile"
@@ -157,7 +168,7 @@
                 "-E",
                 "${file}",
                 "-o",
-                "${workspaceFolder}/Build/g++/${fileBasenameNoExtension}.i"
+                "${workspaceFolder}/build/g++/${fileBasenameNoExtension}.i"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -174,10 +185,10 @@
             "command": "cl.exe",
             "args": [
                 "/P",
-                "${workspaceFolder}/Source/${fileBasename}"
+                "${workspaceFolder}/src/${fileBasename}"
             ],
             "options": {
-                "cwd": "${workspaceFolder}\\Build\\CL"
+                "cwd": "${workspaceFolder}\\build\\CL"
             },
             "problemMatcher": [
                 "$msCompile"
@@ -191,10 +202,10 @@
             "command": "cl.exe",
             "args": [
                 "/Yc",
-                "${workspaceFolder}/Source/${fileBasename}"
+                "${workspaceFolder}/src/${fileBasename}"
             ],
             "options": {
-                "cwd": "${workspaceFolder}\\Build\\CL"
+                "cwd": "${workspaceFolder}\\build\\CL"
             },
             "problemMatcher": [
                 "$msCompile"
@@ -211,7 +222,7 @@
                 "c++-header",
                 "${file}",
                 "-o",
-                "${workspaceFolder}/Build/g++/${fileBasenameNoExtension}.gch"
+                "${workspaceFolder}/build/g++/${fileBasenameNoExtension}.gch"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -228,7 +239,7 @@
             "command": "C:\\Program Files\\MinGW\\bin\\g++.exe",
             "args": [
                 "-std=c++11",
-                "${workspaceFolder}\\Source\\${fileBasenameNoExtension}.cpp"
+                "${workspaceFolder}\\src\\${fileBasenameNoExtension}.cpp"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -245,10 +256,10 @@
             "command": "cl.exe",
             "args": [
                 "/FA",
-                "${workspaceFolder}/Source/*.cpp"
+                "${workspaceFolder}/src/*.cpp"
             ],
             "options": {
-                "cwd": "${workspaceFolder}\\Build\\CL"
+                "cwd": "${workspaceFolder}\\build\\CL"
             },
             "problemMatcher": [
                 "$msCompile"
@@ -264,7 +275,7 @@
                 "-S",
                 "${file}",
                 "-o",
-                "${workspaceFolder}/Build/g++/${fileBasenameNoExtension}.asm"
+                "${workspaceFolder}/build/g++/${fileBasenameNoExtension}.asm"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -277,7 +288,7 @@
         },
         {
             "type": "shell",
-            "label": "Build-Debug[Optimize](CL)",
+            "label": "build-Debug[Optimize](CL)",
             "command": "cl.exe",
             "args": [
                 "/std:c++17",
@@ -286,10 +297,10 @@
                 "/MD",
                 "/DPREDEBUG",
                 "/O2",
-                "/I${workspaceFolder}\\Build\\CL",
-                "/Fo${workspaceFolder}\\Build\\CL\\",
-                "/Fe${workspaceFolder}\\Build\\CL\\${workspaceFolderBasename}.exe",
-                "${workspaceFolder}/Source/*.cpp"
+                "/I${workspaceFolder}\\build\\CL",
+                "/Fo${workspaceFolder}\\build\\CL\\",
+                "/Fe${workspaceFolder}\\build\\CL\\${workspaceFolderBasename}.exe",
+                "${workspaceFolder}/src/*.cpp"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -302,7 +313,73 @@
         },
         {
             "type": "shell",
-            "label": "Build-Debug[Optimize][UsePrecompile](CL)",
+            "label": "build-Debug[Optimize][Subsystem](CL)",
+            "command": "cl.exe",
+            "args": [
+                "/std:c++17",
+                "/W4",
+                "/EHsc",
+                "/D_UNICODE",
+                "/DUNICODE",
+                "/MD",
+                "/DPREDEBUG",
+                "/O2",
+                "/I${workspaceFolder}\\lib\\GLFW\\include",
+                "/I${workspaceFolder}\\build\\CL",
+                "/Fo${workspaceFolder}\\build\\CL\\",
+                "/Fe${workspaceFolder}\\build\\CL\\${workspaceFolderBasename}.exe",
+                "${workspaceFolder}\\lib\\GLFW/lib-vc2022\\glfw3dll.lib",
+                "${workspaceFolder}/source/imgui/*.cpp",
+                "${workspaceFolder}/src/*.cpp",
+                "/link",
+                "/SUBSYSTEM:WINDOWS",
+                "User32.lib",
+                "Gdi32.lib"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": "build",
+            "detail": "Task generated by Alijimpa."
+        },
+        {
+            "type": "shell",
+            "label": "build-Debug[Optimize][MFC](CL)",
+            "command": "cl.exe",
+            "args": [
+                "/std:c++17",
+                "/W4",
+                "/EHsc",
+                "/MD",
+                "/D_UNICODE",
+                "/DUNICODE",
+                "/D_AFXDLL",
+                "/I${workspaceFolder}\\build\\CL",
+                "/Fo${workspaceFolder}\\build\\CL\\",
+                "/Fe${workspaceFolder}\\build\\CL\\${workspaceFolderBasename}.exe",
+                "${workspaceFolder}/src/*.cpp",
+                "/link",
+                "mfcs140u.lib",
+                "myfile.cpp"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Task generated by Alijimpa."
+        },
+        {
+            "type": "shell",
+            "label": "build-Debug[Optimize][UsePrecompile](CL)",
             "command": "cl.exe",
             "args": [
                 "/std:c++17",
@@ -312,10 +389,10 @@
                 "/DPREDEBUG",
                 "/O2",
                 "/Yu",
-                "/I${workspaceFolder}\\Build\\CL",
-                "/Fo${workspaceFolder}\\Build\\CL\\",
-                "/Fe${workspaceFolder}\\Build\\CL\\${workspaceFolderBasename}.exe",
-                "${workspaceFolder}/Source/*.cpp"
+                "/I${workspaceFolder}\\build\\CL",
+                "/Fo${workspaceFolder}\\build\\CL\\",
+                "/Fe${workspaceFolder}\\build\\CL\\${workspaceFolderBasename}.exe",
+                "${workspaceFolder}/src/*.cpp"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -377,7 +454,7 @@
                 "-S",
                 "${file}",
                 "-o",
-                "${workspaceFolder}/Build/g++/${fileBasenameNoExtension}.s"
+                "${workspaceFolder}/build/g++/${fileBasenameNoExtension}.s"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
