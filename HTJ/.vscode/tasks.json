@@ -236,9 +236,9 @@
                 "-o",
                 "${workspaceFolder}/build/GPP/${workspaceFolderBasename}",
                 "-I",
-                "lib\\GLFW\\include", // OpenGL Library
+                "libs\\GLFW\\include", // OpenGL Library
                 "-L",
-                "lib\\GLFW\\lib-vc2022" // OpenGL Library
+                "libs\\GLFW\\lib-vc2022" // OpenGL Library
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -262,21 +262,21 @@
                 "/I${workspaceFolder}\\include\\${workspaceFolderBasename}\\systems",
                 "/I${workspaceFolder}\\include\\${workspaceFolderBasename}\\utils",
                 "/I${workspaceFolder}\\external", // imgui source
-                "/I${workspaceFolder}\\lib\\GLFW\\include", // OpenGL Library
-                "/I${workspaceFolder}\\lib\\GLEW\\include", // OpenGL Library
+                "/I${workspaceFolder}\\libs\\GLFW\\include", // OpenGL Library
+                "/I${workspaceFolder}\\libs\\GLEW\\include", // OpenGL Library
                 "/I${workspaceFolder}\\build\\Debug",
                 "/Fo${workspaceFolder}\\build\\Debug\\",
                 "/Fe${workspaceFolder}\\build\\Debug\\${workspaceFolderBasename}.exe",
-                "${workspaceFolder}\\lib\\GLFW/lib-vc2022\\glfw3dll.lib", // OpenGL Library
-                "${workspaceFolder}\\lib\\GLEW/lib\\glew32s.lib", // OpenGL Library
+                "${workspaceFolder}\\libs\\GLFW/lib-vc2022\\glfw3dll.lib", // OpenGL Library
+                "${workspaceFolder}\\libs\\GLEW/lib\\glew32s.lib", // OpenGL Library
                 "${workspaceFolder}/external/imgui/*.cpp", // imgui source
                 "${workspaceFolder}/external/imgui/backends/imgui_impl_glfw.cpp", // imgui source
                 "${workspaceFolder}/external/imgui/backends/imgui_impl_opengl2.cpp", // imgui source
                 "opengl32.lib", // OpenGL Library
                 "${workspaceFolder}/src/*.cpp",
-                "${workspaceFolder}/src/Core/*.cpp",
-                "${workspaceFolder}/src/systems/*.cpp",
-                "${workspaceFolder}/src/utils/*.cpp"
+                //"${workspaceFolder}/src/core/*.cpp",
+                //"${workspaceFolder}/src/systems/*.cpp",
+                //"${workspaceFolder}/src/utils/*.cpp"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -302,9 +302,9 @@
                 "/Fo${workspaceFolder}\\build\\Release\\",
                 "/Fe${workspaceFolder}\\build\\Release\\${workspaceFolderBasename}.exe",
                 "${workspaceFolder}/src/*.cpp",
-                "${workspaceFolder}/src/Core/*.cpp",
-                "${workspaceFolder}/src/systems/*.cpp",
-                "${workspaceFolder}/src/utils/*.cpp"
+                //"${workspaceFolder}/src/core/*.cpp",
+                //"${workspaceFolder}/src/systems/*.cpp",
+                //"${workspaceFolder}/src/utils/*.cpp"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -328,20 +328,20 @@
                 "/MD",
                 "/DPREDEBUG",
                 "/O2",
-                "/I${workspaceFolder}\\lib\\GLFW\\include", // OpenGL Library
+                "/I${workspaceFolder}\\libs\\GLFW\\include", // OpenGL Library
                 "/I${workspaceFolder}\\build\\Release",
                 "/Fo${workspaceFolder}\\build\\Release\\",
                 "/Fe${workspaceFolder}\\build\\Release\\${workspaceFolderBasename}.exe",
-                "${workspaceFolder}\\lib\\GLFW/lib-vc2022\\glfw3dll.lib", // OpenGL Library
+                "${workspaceFolder}\\libs\\GLFW/lib-vc2022\\glfw3dll.lib", // OpenGL Library
                 "${workspaceFolder}/external/imgui/*.cpp", // imgui source
                 "${workspaceFolder}/src/*.cpp",
-                "${workspaceFolder}/src/Core/*.cpp",
-                "${workspaceFolder}/src/systems/*.cpp",
-                "${workspaceFolder}/src/utils/*.cpp",
+                //"${workspaceFolder}/src/core/*.cpp",
+                //"${workspaceFolder}/src/systems/*.cpp",
+                //"${workspaceFolder}/src/utils/*.cpp",
                 "/link",
                 "/SUBSYSTEM:WINDOWS",
-                "User32.lib",
-                "Gdi32.lib"
+                "User32.libs",
+                "Gdi32.libs"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -368,9 +368,9 @@
                 "/Fo${workspaceFolder}\\build\\Release\\",
                 "/Fe${workspaceFolder}\\build\\Release\\${workspaceFolderBasename}.exe",
                 "${workspaceFolder}/src/*.cpp",
-                "${workspaceFolder}/src/Core/*.cpp",
-                "${workspaceFolder}/src/systems/*.cpp",
-                "${workspaceFolder}/src/utils/*.cpp",
+                //"${workspaceFolder}/src/core/*.cpp",
+                //"${workspaceFolder}/src/systems/*.cpp",
+                //"${workspaceFolder}/src/utils/*.cpp",
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -397,11 +397,11 @@
                 "/Fo${workspaceFolder}\\build\\Debug\\",
                 "/Fe${workspaceFolder}\\build\\Debug\\${workspaceFolderBasename}.exe",
                 "${workspaceFolder}/src/*.cpp",
-                "${workspaceFolder}/src/Core/*.cpp",
-                "${workspaceFolder}/src/systems/*.cpp",
-                "${workspaceFolder}/src/utils/*.cpp",
+                //"${workspaceFolder}/src/core/*.cpp",
+                //"${workspaceFolder}/src/systems/*.cpp",
+                //"${workspaceFolder}/src/utils/*.cpp",
                 "/link",
-                "mfcs140u.lib",
+                "mfcs140u.libs",
                 "myfile.cpp"
             ],
             "options": {
